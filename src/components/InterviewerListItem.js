@@ -1,16 +1,24 @@
 import React from "react";
 
-import "components/DayListItem.scss";
+import "components/InterviewerListItem.scss";
 
 import classNames from "classnames";
 
 export default function InterviewerListItem(props) {
-    return ( <li className="interviewers__item">
+
+  let itemClass = classNames("interviewers__item", {
+    "interviewers__item--selected": props.selected
+  });
+
+  let imgClass = classNames("interviewers__item-image")
+
+    return ( <li className={itemClass} onClick={props.setInterviewer}>
     <img
-      className="interviewers__item-image"
+      className={imgClass}
       src={props.avatar}
       alt={props.name}
     />
-    {props.name}
+    {props.selected && props.name}
+
   </li>)
 }
