@@ -1,5 +1,4 @@
 import React from "react"
-import { action } from "@storybook/addon-actions/dist/preview"
 
 export default function Show(props) {
   return (
