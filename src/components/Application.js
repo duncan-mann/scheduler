@@ -55,7 +55,7 @@ return (
       {schedule}
       <Appointment 
         key={"last"} 
-        time={"4pm"} 
+        time={"5pm"} 
          />
     </section>
   </main>
