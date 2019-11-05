@@ -17,17 +17,7 @@ export default function AppData() {
             case SET_APPLICATION_DATA:
                 return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
             case SET_DAY_SPOTS:
-                return {
-                    ...state, days: state.days.map((item, index) => {
-                        if (index !== action.index) {
-                            return item
-                        }
-                        return {
-                            ...item,
-                            ...action.spots
-                        }
-                    })
-                }
+                return {...state, days: action.days}
             case SET_INTERVIEW:
                 return { ...state, appointments: action.appointments }
             default:
@@ -72,12 +62,14 @@ export default function AppData() {
 
     function bookInterview(id, interview) {
         const dayId = getDayFromAppointment(id);
+
         let spots;
         if (!state.appointments[id].interview) {
-             spots = state.days[dayId - 1].spots--;
+             spots = state.days[dayId - 1].spots - 1;
         } else {
              spots = state.days[dayId - 1].spots;
         }
+
 
         const appointment = {
             ...state.appointments[id],
@@ -89,17 +81,25 @@ export default function AppData() {
             [id]: appointment
         };
 
+        let days = state.days.map((item, index) => {
+            if (index !== dayId - 1) {
+                return item
+            }
+            return {
+                ...item,
+                spots
+            }
+        })
+
         return axios.put(`/api/appointments/${id}`, { interview })
             .then(() => dispatch({ type: SET_INTERVIEW, appointments }))
-            .then(() => dispatch({ type: SET_DAY_SPOTS, index: dayId - 1, spots }))
+            .then(() => dispatch({ type: SET_DAY_SPOTS, days }))
 
     }
 
     function cancelInterview(id) {
         const dayId = getDayFromAppointment(id);
-        let spots = state.days[dayId - 1].spots++;
-
-
+        let spots = state.days[dayId - 1].spots + 1;
 
         const appointment = {
             ...state.appointments[id],
@@ -111,9 +111,19 @@ export default function AppData() {
             [id]: appointment
         }
 
+        let days = state.days.map((item, index) => {
+            if (index !== dayId - 1) {
+                return item
+            }
+            return {
+                ...item,
+                spots
+            }
+        })
+
         return axios.delete(`/api/appointments/${id}`)
             .then(() => dispatch({ type: SET_INTERVIEW, appointments }))
-            .then(() => dispatch({ type: SET_DAY_SPOTS, index: dayId - 1, spots }))
+            .then(() => dispatch({ type: SET_DAY_SPOTS, days}))
     }
 
     return { state, setDay, cancelInterview, bookInterview }
