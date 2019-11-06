@@ -2,6 +2,8 @@
 
 The interview scheduler is a simple, single-page React app where users can book an appointment with interviewers that are available on a given day. 
 
+![Screenshot1](https://github.com/duncan-mann/scheduler/blob/master/screenshots/Screen%20Shot%202019-11-06%20at%2012.33.39%20PM.png?raw=true)
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -25,7 +27,6 @@ npm test
 npm run storybook
 ```
 
-![Screenshot1](https://github.com/duncan-mann/scheduler/blob/master/screenshots/Screen%20Shot%202019-11-06%20at%2012.33.39%20PM.png?raw=true)
 
 
 ![Screenshot2](https://github.com/duncan-mann/scheduler/blob/master/screenshots/Screen%20Shot%202019-11-06%20at%2012.48.07%20PM.png?raw=true)
