@@ -10,14 +10,14 @@ Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
 
-```sh
-Start the web server using the `npm start` command. The app will be served at <http://localhost:8000/>.
-Go to <http://localhost:8000/> in your browser.
-```
+
+Start the web server using the ```npm start``` command. The app will be served at <http://localhost:8000/>.
+
+
 
 ## Running Jest Test Framework
 
-```sh
+```
 npm test
 ```
 
