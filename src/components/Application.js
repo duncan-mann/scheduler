@@ -45,11 +45,6 @@ return (
           setDay={setDay}
         />
       </nav>
-      <img
-        className="sidebar__lhl sidebar--centered"
-        src="images/lhl.png"
-        alt="Lighthouse Labs"
-      />
     </section>
     <section className="schedule">
       {schedule}
